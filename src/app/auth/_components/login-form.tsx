@@ -4,12 +4,14 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { CardContent, Card } from "@/components/ui/card";
 import { useForm } from "react-hook-form";
+import { signIn } from "next-auth/react";
 
 export function LoginForm() {
   const form = useForm();
 
-  const handleSubmit = form.handleSubmit((data) => {
+  const handleSubmit = form.handleSubmit(async (data) => {
     console.log(data);
+    await signIn("email", { email: data.email });
   });
 
   return (
