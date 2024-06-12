@@ -4,6 +4,13 @@ import { PrismaAdapter } from "@auth/prisma-adapter";
 import { prisma } from "../database";
 
 export const { auth, handlers, signIn, signOut } = NextAuth({
+  pages: {
+    signIn: "/auth",
+    error: "/auth",
+    signOut: "/auth",
+    verifyRequest: "/auth",
+    newUser: "/app",
+  },
   secret: process.env.AUTH_SECRET,
   adapter: PrismaAdapter(prisma),
   providers: [
